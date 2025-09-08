@@ -170,6 +170,13 @@ img { max-width: 100%; height: auto; }
   .nav-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.25); backdrop-filter: blur(2px); }
   /* Hide email in footer on mobile */
   .contact a[href^="mailto"] { display: none; }
+  /* Improve hero readability */
+  .hero::before { background: rgba(18,26,22,.58); }
+  .hero::after { background: linear-gradient(to top, rgba(0,0,0,.35), transparent 55%); }
+  .headline { font-size: clamp(1.9rem, 6.2vw, 2.6rem); }
+  .hero-ctas { flex-direction: column; align-items: flex-start; gap: 0.6rem; }
+  .time-inline { color: #fff; opacity: .9; }
+  .clock-overlay { display: none; }
 }
 
 /* Reveal animation */
