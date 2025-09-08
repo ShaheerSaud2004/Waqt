@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WAQT — Flavors Rooted in Tradition</title>
+    <meta name="description" content="WAQT drinks bring together tradition with a modern twist. Mojitos and matcha, crafted with care." />
+    <meta property="og:title" content="WAQT — Flavors Rooted in Tradition" />
+    <meta property="og:description" content="Mojitos and matcha inspired by time-honored flavors." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#home" class="brand" aria-label="WAQT Home">
+          <img src="assets/logo.jpg" alt="WAQT logo" class="brand-mark" />
+          <span class="brand-name">WAQT</span>
+        </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#menu">Menu</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#order">Order</a>
+          <a class="btn btn-outline" href="https://instagram.com/drinkwaqt.co" target="_blank" rel="noopener">Instagram</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero tile-bg" data-rotator>
+        <div class="hero-media" data-hero-media>
+          <img src="assets/hero1.jpg" alt="Iced matcha with cream" />
+          <img src="assets/hero2.jpg" alt="A refreshing green drink" />
+        </div>
+        <div class="container hero-content">
+          <h1 class="headline"><span class="time-inline" id="live-time">--:--</span> Flavors Rooted in Tradition.</h1>
+          <p class="subhead">It’s always a good time — inspired by <strong>waqt</strong>, meaning “time.” Our drinks honor classics with a modern twist.</p>
+          <div class="hero-ctas">
+            <a class="btn" href="#menu">Explore Menu</a>
+            <a class="btn btn-outline" href="#order">Order Now</a>
+          </div>
+        </div>
+        <div class="clock-overlay" aria-hidden="true">
+          <div class="dial">
+            <div class="hand hour" id="hand-hour"></div>
+            <div class="hand minute" id="hand-minute"></div>
+            <div class="hand second" id="hand-second"></div>
+            <div class="ticks"></div>
+          </div>
+        </div>
+        <div class="ornament top-left" aria-hidden="true"></div>
+        <div class="ornament bottom-right" aria-hidden="true"></div>
+      </section>
+
+      <div class="tile-band" aria-hidden="true"></div>
+
+      <section id="about" class="section about" data-reveal>
+        <div class="container grid-2">
+          <div class="about-media">
+            <img src="assets/logo.jpg" alt="WAQT mark" />
+          </div>
+          <div class="about-copy">
+            <h2>About WAQT</h2>
+            <p>
+              In Urdu and Arabic, <strong>waqt</strong> means <em>time</em> — a reminder that the best
+              flavors are timeless. We craft refreshing drinks that bring together cherished traditions and a
+              modern sensibility. Minimal, clean, and thoughtful — every sip is designed to feel familiar yet new.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="section menu menu-modern" data-reveal>
+        <div class="container">
+          <h2>Menu</h2>
+          <div class="menu-split">
+            <div class="menu-left">
+              <div class="tabs" role="tablist">
+                <button class="tab is-active" role="tab" aria-selected="true" data-tab="mojitos">Mojitos</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="matcha">Matcha</button>
+              </div>
+
+              <div class="tab-panels">
+                <div class="panel is-active" id="panel-mojitos" role="tabpanel">
+                  <div class="dial-grid">
+                    <article class="dial-card">
+                      <div class="dial-face"><span class="dial-title">Blueberry Mojito</span></div>
+                      <p class="dial-desc">A fruity spin with blueberry and cooling mint.</p>
+                    </article>
+                    <article class="dial-card">
+                      <div class="dial-face"><span class="dial-title">Mango Mojito</span></div>
+                      <p class="dial-desc">Juicy mango, zesty lime, and fresh mint.</p>
+                    </article>
+                    <article class="dial-card">
+                      <div class="dial-face"><span class="dial-title">Strawberry Mojito</span></div>
+                      <p class="dial-desc">Fresh strawberries, mint, and lime for a crisp sip.</p>
+                    </article>
+                  </div>
+                </div>
+                <div class="panel" id="panel-matcha" role="tabpanel">
+                  <div class="dial-grid">
+                    <article class="dial-card">
+                      <div class="dial-face"><span class="dial-title">Blueberry Matcha</span></div>
+                      <p class="dial-desc">Delicious matcha with blueberry for a fruity, earthy blend.</p>
+                    </article>
+                    <article class="dial-card">
+                      <div class="dial-face"><span class="dial-title">Classic Iced Matcha</span></div>
+                      <p class="dial-desc">Fine Japanese matcha — smooth and balanced.</p>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="menu-poster">
+              <img src="assets/summer-menu.jpg" alt="Summer menu poster" />
+              <a class="btn btn-outline" href="assets/summer-menu.jpg" download>Download Menu</a>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline" class="section timeline" data-reveal>
+        <div class="container">
+          <h2>Time & Tradition</h2>
+          <ol class="chrono fancy">
+            <li class="time-card" style="--h:9; --m:15;">
+              <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
+              <div class="time-copy">
+                <span class="t">Morning</span>
+                <p>Start bright with our clean, balanced matcha.</p>
+              </div>
+            </li>
+            <li class="time-card" style="--h:15; --m:0;">
+              <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
+              <div class="time-copy">
+                <span class="t">Afternoon</span>
+                <p>Cool down with a mojito — fruit-forward and minty.</p>
+              </div>
+            </li>
+            <li class="time-card" style="--h:20; --m:30;">
+              <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
+              <div class="time-copy">
+                <span class="t">Evening</span>
+                <p>Unwind with flavors that feel timeless.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      
+
+      <section id="gallery" class="section gallery" data-reveal>
+        <div class="container">
+          <h2>Gallery</h2>
+          <p class="menu-note">A glimpse of our flavors and vibe.</p>
+          <div class="mosaic">
+            <figure class="frame large"><img src="assets/hero2.jpg" alt="Iced green drink close-up" /></figure>
+            <figure class="frame"><img src="assets/hero1.jpg" alt="Matcha with cream" /></figure>
+            <figure class="frame tile"></figure>
+            <figure class="frame poster"><img src="assets/summer-menu.jpg" alt="Summer Menu" /></figure>
+            <figure class="frame logo"><img src="assets/logo.jpg" alt="WAQT emblem" /></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="order" class="section order" data-reveal>
+        <div class="container grid-2">
+          <div>
+            <h2>Order</h2>
+            <p>Ready when you are — reach us directly and we’ll confirm details and pickup timing.</p>
+            <div class="cta-stack">
+              <a class="btn" href="mailto:drinkwaqt.co@gmail.com?subject=WAQT%20Order&body=Hello%20WAQT%2C%20I%27d%20like%20to%20order%3A%20">Email Us</a>
+              <a class="btn btn-outline" href="https://instagram.com/drinkwaqt.co" target="_blank" rel="noopener">DM on Instagram</a>
+            </div>
+          </div>
+          <div class="order-note">
+            <p class="small">For pop-ups or events, contact us — we’re happy to curate a menu that fits your time and place.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Scroll Clock (custom scrollbar UI) -->
+    <aside class="scroll-clock" aria-hidden="true">
+      <div class="clock-track"></div>
+      <div class="clock-knob">
+        <div class="clock-face">
+          <span class="ticks"></span>
+          <span class="hand hour" id="scroll-hour"></span>
+          <span class="hand minute" id="scroll-minute"></span>
+        </div>
+      </div>
+    </aside>
+
+    <footer class="site-footer" data-reveal>
+      <div class="container footer-grid">
+        <div class="brandline">
+          <span class="brand-name">WAQT</span>
+          <span class="divider">•</span>
+          <span>Flavors Rooted in Tradition</span>
+        </div>
+        <div class="contact">
+          <a href="mailto:drinkwaqt.co@gmail.com">drinkwaqt.co@gmail.com</a>
+          <a href="https://instagram.com/drinkwaqt.co" target="_blank" rel="noopener">@drinkwaqt.co</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+
