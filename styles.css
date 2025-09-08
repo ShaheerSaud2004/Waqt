@@ -110,12 +110,8 @@ a { color: inherit; text-decoration: none; }
 .menu h2 { margin-bottom: 0.75rem; }
 .menu-split { display: grid; grid-template-columns: 1fr 460px; align-items: start; gap: 1.25rem; }
 .menu-left { min-width: 0; }
-.menu-modern .tabs { display: inline-flex; gap: 0.25rem; border: 1px solid var(--line); padding: 0.25rem; border-radius: 999px; background: var(--cream); }
-.menu-modern .tab { background: transparent; border: 0; padding: 0.5rem 0.9rem; border-radius: 999px; font-weight: 600; color: var(--ink-2); cursor: pointer; }
-.menu-modern .tab.is-active { background: var(--ink); color: #fff; }
-.menu-modern .tab-panels { margin-top: 1rem; }
-.menu-modern .panel { display: none; }
-.menu-modern .panel.is-active { display: block; }
+.menu-group { margin-bottom: 1.25rem; }
+.group-title { font-family: "Cormorant Garamond", serif; font-weight: 700; letter-spacing: .4px; margin-bottom: .5rem; }
 
 .dial-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .dial-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; text-align: center; box-shadow: 0 10px 22px rgba(0,0,0,.06); display: grid; gap: 0.6rem; align-content: start; }
@@ -129,23 +125,19 @@ a { color: inherit; text-decoration: none; }
 
 /* Gallery */
 .gallery .mosaic {
-  display: grid; gap: 0.75rem; grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: 140px;
+  display: grid; gap: 0.9rem; grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-.gallery .frame { position: relative; overflow: hidden; border-radius: 12px; border: 1px solid var(--line); background: var(--card); box-shadow: 0 10px 22px rgba(0,0,0,.06); }
+.gallery .frame { position: relative; overflow: hidden; border-radius: 14px; border: 1px solid var(--line); background: var(--card); box-shadow: 0 10px 22px rgba(0,0,0,.06); aspect-ratio: 1; }
 .gallery .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
 .gallery .frame:hover img { transform: scale(1.04); }
-.gallery .frame.large { grid-column: span 3; grid-row: span 2; }
-.gallery .frame.poster { grid-column: span 2; }
-.gallery .frame.logo { grid-column: span 1; background: var(--cream); }
-.gallery .frame.tile { grid-column: span 2; background: radial-gradient(circle at 25% 25%, color-mix(in oklab, var(--accent-2) 40%, #fff 60%), transparent 60%), radial-gradient(circle at 75% 75%, color-mix(in oklab, var(--accent) 40%, #fff 60%), transparent 60%); border-style: dashed; }
+/* remove previous special frames */
 
 @media (max-width: 900px) {
-  .gallery .mosaic { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 120px; }
+  .gallery .mosaic { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
-  .gallery .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
+  .gallery .mosaic { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Order */
