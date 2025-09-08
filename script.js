@@ -1,12 +1,29 @@
 // Mobile nav toggle
 const toggle = document.querySelector('.nav-toggle');
 const links = document.querySelector('.nav-links');
+const navBackdrop = document.getElementById('nav-backdrop');
 if (toggle && links) {
   toggle.addEventListener('click', () => {
     const isOpen = links.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(isOpen));
+    if (navBackdrop) navBackdrop.hidden = !isOpen;
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 }
+
+// Close menu when clicking outside or on a link
+links?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+  links.classList.remove('is-open');
+  toggle?.setAttribute('aria-expanded', 'false');
+  if (navBackdrop) navBackdrop.hidden = true;
+  document.body.style.overflow = '';
+}));
+navBackdrop?.addEventListener('click', () => {
+  links?.classList.remove('is-open');
+  toggle?.setAttribute('aria-expanded', 'false');
+  navBackdrop.hidden = true;
+  document.body.style.overflow = '';
+});
 
 // Simple hero rotator
 const mediaWrap = document.querySelector('[data-hero-media]');

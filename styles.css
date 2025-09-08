@@ -167,6 +167,7 @@ img { max-width: 100%; height: auto; }
   .nav-links { position: absolute; right: 4%; top: 60px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 0.5rem; display: none; flex-direction: column; min-width: 220px; box-shadow: 0 8px 20px rgba(0,0,0,.08); }
   .nav-links.is-open { display: flex; }
   .scroll-clock { display: none; }
+  .nav-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.25); backdrop-filter: blur(2px); }
 }
 
 /* Reveal animation */
