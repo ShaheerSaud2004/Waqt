@@ -168,6 +168,8 @@ img { max-width: 100%; height: auto; }
   .nav-links.is-open { display: flex; }
   .scroll-clock { display: none; }
   .nav-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.25); backdrop-filter: blur(2px); }
+  /* Hide email in footer on mobile */
+  .contact a[href^="mailto"] { display: none; }
 }
 
 /* Reveal animation */
