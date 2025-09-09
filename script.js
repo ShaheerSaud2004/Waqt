@@ -123,6 +123,9 @@ const track = document.querySelector('.scroll-clock .clock-track');
 const sh = document.getElementById('scroll-hour');
 const sm = document.getElementById('scroll-minute');
 
+let isDragging = false;
+let dragOffset = 0;
+
 function updateScrollClock() {
   if (!scrollClock || !knob || !track) return;
   const doc = document.documentElement;
@@ -132,8 +135,11 @@ function updateScrollClock() {
 
   const trackRect = track.getBoundingClientRect();
   const usable = trackRect.height - knob.offsetHeight;
-  const y = trackRect.top + window.scrollY + pct * usable;
-  knob.style.transform = `translateY(${Math.max(0, Math.min(usable, pct * usable))}px)`;
+  const position = Math.max(0, Math.min(usable, pct * usable));
+  
+  if (!isDragging) {
+    knob.style.transform = `translateY(${position}px)`;
+  }
 
   // Map scroll percent to a 12-hour dial
   const minutes = Math.round(pct * 12 * 60) % (12 * 60);
@@ -145,6 +151,73 @@ function updateScrollClock() {
   if (sh) sh.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
 }
 
+function scrollToPercent(pct) {
+  const doc = document.documentElement;
+  const target = pct * (doc.scrollHeight - doc.clientHeight);
+  window.scrollTo({ top: target, behavior: isDragging ? 'auto' : 'smooth' });
+}
+
+// Mouse events for dragging
+if (knob) {
+  knob.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    const knobRect = knob.getBoundingClientRect();
+    dragOffset = e.clientY - knobRect.top;
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+}
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging || !track || !knob) return;
+  
+  const trackRect = track.getBoundingClientRect();
+  const y = e.clientY - trackRect.top - dragOffset;
+  const max = trackRect.height - knob.offsetHeight;
+  const pct = Math.max(0, Math.min(1, y / max));
+  
+  knob.style.transform = `translateY(${y}px)`;
+  scrollToPercent(pct);
+});
+
+document.addEventListener('mouseup', () => {
+  if (isDragging) {
+    isDragging = false;
+    document.body.style.userSelect = '';
+  }
+});
+
+// Touch events for mobile dragging
+if (knob) {
+  knob.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    const knobRect = knob.getBoundingClientRect();
+    const touch = e.touches[0];
+    dragOffset = touch.clientY - knobRect.top;
+    e.preventDefault();
+  }, { passive: false });
+}
+
+document.addEventListener('touchmove', (e) => {
+  if (!isDragging || !track || !knob) return;
+  
+  const touch = e.touches[0];
+  const trackRect = track.getBoundingClientRect();
+  const y = touch.clientY - trackRect.top - dragOffset;
+  const max = trackRect.height - knob.offsetHeight;
+  const pct = Math.max(0, Math.min(1, y / max));
+  
+  knob.style.transform = `translateY(${y}px)`;
+  scrollToPercent(pct);
+  e.preventDefault();
+}, { passive: false });
+
+document.addEventListener('touchend', () => {
+  if (isDragging) {
+    isDragging = false;
+  }
+});
+
 updateScrollClock();
 window.addEventListener('scroll', updateScrollClock, { passive: true });
 window.addEventListener('resize', updateScrollClock);
@@ -152,13 +225,13 @@ window.addEventListener('resize', updateScrollClock);
 // Clicking the track moves scroll position
 if (track) {
   track.addEventListener('click', (e) => {
+    if (e.target === knob) return; // Don't trigger on knob clicks
+    
     const rect = track.getBoundingClientRect();
     const y = e.clientY - rect.top - knob.offsetHeight / 2;
     const max = rect.height - knob.offsetHeight;
     const pct = Math.max(0, Math.min(1, y / max));
-    const doc = document.documentElement;
-    const target = pct * (doc.scrollHeight - doc.clientHeight);
-    window.scrollTo({ top: target, behavior: 'smooth' });
+    scrollToPercent(pct);
   });
 }
 
