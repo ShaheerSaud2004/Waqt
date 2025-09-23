@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -35,45 +35,85 @@
     </header>
 
     <main id="home">
-      <section class="hero tile-bg" data-rotator>
-        <div class="hero-media" data-hero-media>
-          <img src="assets/hero1.jpg" alt="Iced matcha with cream" />
-          <img src="assets/hero2.jpg" alt="A refreshing green drink" />
-        </div>
-        <div class="container hero-content">
-          <h1 class="headline"><span class="time-inline" id="live-time">--:--</span> Flavors Rooted in Tradition.</h1>
-          <p class="subhead">It’s always a good time — inspired by <strong>waqt</strong>, meaning “time.” Our drinks honor classics with a modern twist.</p>
-          <div class="hero-ctas">
-            <a class="btn" href="#menu">Explore Menu</a>
-            <a class="btn btn-outline" href="#order">Order Now</a>
+      <section class="hero collage-hero" data-reveal>
+        <div class="collage-showcase hero-collage">
+          <div class="collage-main hero-main">
+            <img src="Beige Black Aesthetic Weekend Recap Collage Instagram Post.PNG" alt="WAQT Weekend Recap - Our Story in Moments" />
+            <div class="collage-overlay hero-overlay">
+              <div class="story-badge">✨ FEATURED STORY ✨</div>
+              <h1 class="hero-headline">OUR STORY IN<br>MOMENTS</h1>
+              <p class="hero-subhead">Every drink tells a story, every moment creates a memory. This is WAQT — where time, tradition, and taste come together.</p>
+              <div class="hero-ctas">
+                <a class="btn" href="#menu">Explore Menu</a>
+                <a class="btn btn-outline" href="#order">Order Now</a>
+              </div>
+              <div class="story-cta">
+                <span class="arabic-text">اكتشف قصتنا</span>
+                <span class="english-text">DISCOVER OUR JOURNEY</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="clock-overlay" aria-hidden="true">
-          <div class="dial">
+          <div class="dial islamic-sundial">
             <div class="hand hour" id="hand-hour"></div>
             <div class="hand minute" id="hand-minute"></div>
             <div class="hand second" id="hand-second"></div>
             <div class="ticks"></div>
+            <div class="qibla-indicator" id="qibla-indicator"></div>
+            <div class="islamic-markers">
+              <div class="marker fajr" data-prayer="Fajr">فجر</div>
+              <div class="marker dhuhr" data-prayer="Dhuhr">ظهر</div>
+              <div class="marker asr" data-prayer="Asr">عصر</div>
+              <div class="marker maghrib" data-prayer="Maghrib">مغرب</div>
+              <div class="marker isha" data-prayer="Isha">عشاء</div>
+            </div>
           </div>
         </div>
-        <div class="ornament top-left" aria-hidden="true"></div>
-        <div class="ornament bottom-right" aria-hidden="true"></div>
+        <div class="islamic-pattern top-pattern" aria-hidden="true"></div>
+        <div class="islamic-pattern bottom-pattern" aria-hidden="true"></div>
+        <div class="arabic-ornament left-ornament" aria-hidden="true">بسم الله</div>
+        <div class="arabic-ornament right-ornament" aria-hidden="true">الرحمن الرحيم</div>
+        <div class="calligraphic-design" aria-hidden="true"></div>
       </section>
 
       <div class="tile-band" aria-hidden="true"></div>
 
+
       <section id="about" class="section about" data-reveal>
-        <div class="container grid-2">
-          <div class="about-media">
-            <img src="assets/logo.jpg" alt="WAQT mark" />
-          </div>
-          <div class="about-copy">
+        <div class="container">
+          <div class="about-header">
             <h2>About WAQT</h2>
-            <p>
-              In Urdu and Arabic, <strong>waqt</strong> means <em>time</em> — a reminder that the best
-              flavors are timeless. We craft refreshing drinks that bring together cherished traditions and a
-              modern sensibility. Minimal, clean, and thoughtful — every sip is designed to feel familiar yet new.
-            </p>
+            <div class="arabic-subtitle">عن وقف</div>
+          </div>
+          <div class="grid-2 about-content">
+            <div class="about-media">
+              <div class="about-image-container">
+                <img src="assets/logo.jpg" alt="WAQT mark" />
+                <div class="about-ornament"></div>
+              </div>
+            </div>
+            <div class="about-copy">
+              <p>
+                In Urdu and Arabic, <strong>waqt</strong> <span class="arabic-text">(وقت)</span> means <em>time</em> — a reminder that the best
+                flavors are timeless. We craft refreshing drinks that bring together cherished traditions and a
+                modern sensibility. Minimal, clean, and thoughtful — every sip is designed to feel familiar yet new.
+              </p>
+              <div class="about-features">
+                <div class="feature-item">
+                  <span class="feature-icon">⏰</span>
+                  <span class="feature-text">Timeless Traditions</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🌿</span>
+                  <span class="feature-text">Fresh Ingredients</span>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✨</span>
+                  <span class="feature-text">Modern Craft</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

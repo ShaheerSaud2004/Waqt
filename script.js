@@ -76,11 +76,47 @@ if (revealNodes.length) {
   revealNodes.forEach((n) => io.observe(n));
 }
 
-// Live time and clock hands
+// Live time and clock hands with Islamic prayer times
 const timeInline = document.getElementById('live-time');
+const prayerTime = document.getElementById('prayer-time');
 const hHand = document.getElementById('hand-hour');
 const mHand = document.getElementById('hand-minute');
 const sHand = document.getElementById('hand-second');
+
+// Simple prayer time calculation (approximate)
+function getCurrentPrayerTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const mins = now.getMinutes();
+  const currentMinutes = hours * 60 + mins;
+  
+  // Approximate prayer times (these would normally be calculated based on location and date)
+  const prayerTimes = {
+    fajr: 5 * 60 + 30,    // 5:30 AM
+    dhuhr: 12 * 60 + 15,  // 12:15 PM
+    asr: 15 * 60 + 45,    // 3:45 PM
+    maghrib: 18 * 60 + 30, // 6:30 PM
+    isha: 20 * 60 + 15    // 8:15 PM
+  };
+  
+  // Find the next prayer time
+  const nextPrayer = Object.entries(prayerTimes).find(([name, time]) => time > currentMinutes);
+  if (nextPrayer) {
+    const [name, time] = nextPrayer;
+    const prayerHours = Math.floor(time / 60);
+    const prayerMins = time % 60;
+    const h12 = ((prayerHours + 11) % 12) + 1;
+    const mm = String(prayerMins).padStart(2, '0');
+    return `${name.charAt(0).toUpperCase() + name.slice(1)}: ${h12}:${mm}`;
+  } else {
+    // If it's past Isha, show Fajr for next day
+    const fajrHours = Math.floor(prayerTimes.fajr / 60);
+    const fajrMins = prayerTimes.fajr % 60;
+    const h12 = ((fajrHours + 11) % 12) + 1;
+    const mm = String(fajrMins).padStart(2, '0');
+    return `Fajr: ${h12}:${mm}`;
+  }
+}
 
 function updateTime() {
   const d = new Date();
@@ -91,6 +127,9 @@ function updateTime() {
     const h12 = ((hours + 11) % 12) + 1;
     const mm = String(mins).padStart(2, '0');
     timeInline.textContent = `${h12}:${mm}`;
+  }
+  if (prayerTime) {
+    prayerTime.textContent = getCurrentPrayerTime();
   }
   const secDeg = secs * 6; // 360/60
   const minDeg = mins * 6 + secs * 0.1;
