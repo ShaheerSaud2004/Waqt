@@ -25,7 +25,7 @@
         </button>
         <nav class="nav-links">
           <a href="#about">About</a>
-          <a href="#menu-showcase">Menu</a>
+          <a href="#menu">Menu</a>
           <a href="#gallery">Gallery</a>
           <a href="#order">Order</a>
           <a class="btn btn-outline" href="https://instagram.com/drinkwaqt.co" target="_blank" rel="noopener">Instagram</a>
@@ -35,44 +35,19 @@
     </header>
 
     <main id="home">
-      <section class="hero minimal-hero" data-reveal>
+      <section class="hero simple-hero" data-reveal>
+        <div class="hero-backdrop">
+          <img src="assets/products/100_0692.jpg" alt="WAQT drink backdrop" />
+        </div>
         <div class="hero-content">
           <h1 class="hero-headline">WAQT</h1>
           <p class="hero-subhead">Every drink tells a story, every moment creates a memory. This is WAQT — where time, tradition, and taste come together.</p>
           <div class="hero-ctas">
-            <a class="btn" href="#menu-showcase">Explore Menu</a>
+            <a class="btn" href="#menu">Explore Menu</a>
             <a class="btn btn-outline" href="#order">Order Now</a>
           </div>
-          <div class="story-cta">
-            <span class="arabic-text">اكتشف قصتنا</span>
-            <span class="english-text">DISCOVER OUR JOURNEY</span>
-          </div>
         </div>
-        <div class="clock-overlay" aria-hidden="true">
-          <div class="dial islamic-sundial">
-            <div class="hand hour" id="hand-hour"></div>
-            <div class="hand minute" id="hand-minute"></div>
-            <div class="hand second" id="hand-second"></div>
-            <div class="ticks"></div>
-            <div class="qibla-indicator" id="qibla-indicator"></div>
-            <div class="islamic-markers">
-              <div class="marker fajr" data-prayer="Fajr">فجر</div>
-              <div class="marker dhuhr" data-prayer="Dhuhr">ظهر</div>
-              <div class="marker asr" data-prayer="Asr">عصر</div>
-              <div class="marker maghrib" data-prayer="Maghrib">مغرب</div>
-              <div class="marker isha" data-prayer="Isha">عشاء</div>
-            </div>
-          </div>
-        </div>
-        <div class="islamic-pattern top-pattern" aria-hidden="true"></div>
-        <div class="islamic-pattern bottom-pattern" aria-hidden="true"></div>
-        <div class="arabic-ornament left-ornament" aria-hidden="true">بسم الله</div>
-        <div class="arabic-ornament right-ornament" aria-hidden="true">الرحمن الرحيم</div>
-        <div class="calligraphic-design" aria-hidden="true"></div>
       </section>
-
-      <div class="tile-band" aria-hidden="true"></div>
-
 
       <section id="about" class="section about" data-reveal>
         <div class="container">
@@ -81,12 +56,6 @@
             <div class="arabic-subtitle">عن وقف</div>
           </div>
           <div class="grid-2 about-content">
-            <div class="about-media">
-              <div class="about-image-container">
-                <img src="assets/logo.jpg" alt="WAQT mark" />
-                <div class="about-ornament"></div>
-              </div>
-            </div>
             <div class="about-copy">
               <p>
                 In Urdu and Arabic, <strong>waqt</strong> <span class="arabic-text">(وقت)</span> means <em>time</em> — a reminder that the best
@@ -106,24 +75,6 @@
                   <span class="feature-icon">✨</span>
                   <span class="feature-text">Modern Craft</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Menu Showcase Section -->
-      <section id="menu-showcase" class="section menu-showcase" data-reveal>
-        <div class="container">
-          <div class="menu-showcase-header">
-            <h2>Our Menu</h2>
-            <p class="menu-showcase-subtitle">Discover our carefully crafted beverages</p>
-          </div>
-          <div class="menu-showcase-content">
-            <div class="menu-image-container">
-              <img src="assets/products/Beige and Green Floral Wedding Menu.PNG" alt="WAQT Menu - Beige and Green Floral Design" class="menu-image" />
-              <div class="menu-overlay">
-                <a class="btn btn-menu-download" href="assets/products/Beige and Green Floral Wedding Menu.PNG" download>Download Menu</a>
               </div>
             </div>
           </div>
@@ -173,25 +124,25 @@
         <div class="container">
           <h2>Time & Tradition</h2>
           <ol class="chrono fancy">
-            <li class="time-card" style="--h:7; --m:30;">
+            <li class="time-card" style="--h:8; --m:0;">
               <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
               <div class="time-copy">
-                <span class="t">7:30 AM</span>
-                <p>Morning matcha to energize your day with premium quality.</p>
+                <span class="t">8:00 AM</span>
+                <p>Start your day with our premium matcha blends for natural energy.</p>
               </div>
             </li>
-            <li class="time-card" style="--h:14; --m:15;">
+            <li class="time-card" style="--h:13; --m:30;">
               <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
               <div class="time-copy">
-                <span class="t">2:15 PM</span>
-                <p>Afternoon refreshment with our signature fruit mojitos.</p>
+                <span class="t">1:30 PM</span>
+                <p>Lunch break refreshment with our signature fruit mojitos.</p>
               </div>
             </li>
-            <li class="time-card" style="--h:18; --m:45;">
+            <li class="time-card" style="--h:17; --m:0;">
               <div class="mini-dial" aria-hidden="true"><span class="ticks"></span><span class="hand hour"></span><span class="hand minute"></span></div>
               <div class="time-copy">
-                <span class="t">6:45 PM</span>
-                <p>Evening unwind with our crafted beverage collection.</p>
+                <span class="t">5:00 PM</span>
+                <p>After-work unwind with our crafted beverage collection.</p>
               </div>
             </li>
           </ol>
@@ -212,9 +163,11 @@
             <figure class="frame"><img src="assets/products/IMG_9967.jpg" alt="Artisanal beverage creation" /></figure>
             <figure class="frame"><img src="assets/products/IMG_9980.jpg" alt="Premium drink presentation" /></figure>
             <figure class="frame"><img src="assets/products/FE818969-462A-4E1F-A452-10D66FA58099.JPG" alt="WAQT drink collection" /></figure>
-            <figure class="frame"><img src="assets/products/RenderedImage.jpeg" alt="Creative drink design" /></figure>
-            <figure class="frame frame-large"><img src="assets/products/Beige and Green Floral Wedding Menu.PNG" alt="Beige and Green Floral Wedding Menu" /></figure>
-            <figure class="frame frame-large"><img src="assets/products/SummerMenu.JPG" alt="Summer menu showcase" /></figure>
+            <figure class="frame frame-large"><img src="IMG_3657.jpeg" alt="Outdoor beverage station with colorful syrups and drinks" /></figure>
+            <figure class="frame"><img src="IMG_3658.jpeg" alt="Two hands holding colorful sparkling drinks in toast" /></figure>
+            <figure class="frame"><img src="IMG_3659.jpeg" alt="Close-up of hands holding vibrant drinks with gold accessories" /></figure>
+            <figure class="frame"><img src="IMG_3660.jpeg" alt="Drink preparation station with fresh ingredients and tools" /></figure>
+            <figure class="frame"><img src="IMG_3661.jpeg" alt="Golden syrup dispensers with colorful beverages" /></figure>
           </div>
         </div>
       </section>

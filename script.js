@@ -5,6 +5,7 @@ const navBackdrop = document.getElementById('nav-backdrop');
 if (toggle && links) {
   toggle.addEventListener('click', () => {
     const isOpen = links.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
     if (navBackdrop) navBackdrop.hidden = !isOpen;
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -14,12 +15,14 @@ if (toggle && links) {
 // Close menu when clicking outside or on a link
 links?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
   links.classList.remove('is-open');
+  toggle?.classList.remove('is-open');
   toggle?.setAttribute('aria-expanded', 'false');
   if (navBackdrop) navBackdrop.hidden = true;
   document.body.style.overflow = '';
 }));
 navBackdrop?.addEventListener('click', () => {
   links?.classList.remove('is-open');
+  toggle?.classList.remove('is-open');
   toggle?.setAttribute('aria-expanded', 'false');
   navBackdrop.hidden = true;
   document.body.style.overflow = '';
@@ -167,11 +170,13 @@ let dragOffset = 0;
 
 function updateScrollClock() {
   if (!scrollClock || !knob || !track) return;
+  
   const doc = document.documentElement;
   const scrollTop = doc.scrollTop || document.body.scrollTop;
   const scrollHeight = doc.scrollHeight - doc.clientHeight;
   const pct = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
 
+  // Update knob position
   const trackRect = track.getBoundingClientRect();
   const usable = trackRect.height - knob.offsetHeight;
   const position = Math.max(0, Math.min(usable, pct * usable));
@@ -180,14 +185,20 @@ function updateScrollClock() {
     knob.style.transform = `translateY(${position}px)`;
   }
 
-  // Map scroll percent to a 12-hour dial
-  const minutes = Math.round(pct * 12 * 60) % (12 * 60);
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  const minDeg = mins * 6;
-  const hourDeg = hours * 30 + mins * 0.5;
+  // Map scroll percent to a 12-hour dial (0-12 hours)
+  const totalMinutes = Math.round(pct * 12 * 60); // 0 to 720 minutes (12 hours)
+  const hours = Math.floor(totalMinutes / 60);
+  const mins = totalMinutes % 60;
+  
+  // Calculate degrees
+  const minDeg = mins * 6; // 6 degrees per minute
+  const hourDeg = hours * 30 + mins * 0.5; // 30 degrees per hour + minute adjustment
+  
+  // Update clock hands
   if (sm) sm.style.transform = `translate(-50%, -90%) rotate(${minDeg}deg)`;
   if (sh) sh.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
+  
+  console.log(`Scroll: ${(pct * 100).toFixed(1)}% | Time: ${hours}:${mins.toString().padStart(2, '0')} | Hour: ${hourDeg.toFixed(1)}° | Min: ${minDeg.toFixed(1)}°`);
 }
 
 function scrollToPercent(pct) {
