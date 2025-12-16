@@ -159,22 +159,34 @@ tabs.forEach((t) => t.addEventListener('click', () => {
 }));
 
 // Scroll Clock behavior
-const scrollClock = document.querySelector('.scroll-clock');
-const knob = document.querySelector('.scroll-clock .clock-knob');
-const track = document.querySelector('.scroll-clock .clock-track');
-const sh = document.getElementById('scroll-hour');
-const sm = document.getElementById('scroll-minute');
-
+let scrollClock, knob, track, sh, sm;
 let isDragging = false;
 let dragOffset = 0;
 
+function initScrollClock() {
+  scrollClock = document.querySelector('.scroll-clock');
+  knob = document.querySelector('.scroll-clock .clock-knob');
+  track = document.querySelector('.scroll-clock .clock-track');
+  sh = document.getElementById('scroll-hour');
+  sm = document.getElementById('scroll-minute');
+  
+  if (!scrollClock || !knob || !track || !sh || !sm) {
+    return; // Elements not found, skip initialization
+  }
+  
+  // Set up scroll listener
+  updateScrollClock();
+  window.addEventListener('scroll', updateScrollClock, { passive: true });
+  window.addEventListener('resize', updateScrollClock);
+}
+
 function updateScrollClock() {
-  if (!scrollClock || !knob || !track) return;
+  if (!scrollClock || !knob || !track || !sh || !sm) return;
   
   const doc = document.documentElement;
   const scrollTop = doc.scrollTop || document.body.scrollTop;
   const scrollHeight = doc.scrollHeight - doc.clientHeight;
-  const pct = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
+  const pct = scrollHeight > 0 ? Math.min(1, Math.max(0, scrollTop / scrollHeight)) : 0;
 
   // Update knob position
   const trackRect = track.getBoundingClientRect();
@@ -194,11 +206,9 @@ function updateScrollClock() {
   const minDeg = mins * 6; // 6 degrees per minute
   const hourDeg = hours * 30 + mins * 0.5; // 30 degrees per hour + minute adjustment
   
-  // Update clock hands
-  if (sm) sm.style.transform = `translate(-50%, -90%) rotate(${minDeg}deg)`;
-  if (sh) sh.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
-  
-  console.log(`Scroll: ${(pct * 100).toFixed(1)}% | Time: ${hours}:${mins.toString().padStart(2, '0')} | Hour: ${hourDeg.toFixed(1)}° | Min: ${minDeg.toFixed(1)}°`);
+  // Update clock hands - ensure transform is applied
+  sm.style.transform = `translate(-50%, -90%) rotate(${minDeg}deg)`;
+  sh.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
 }
 
 function scrollToPercent(pct) {
@@ -207,8 +217,10 @@ function scrollToPercent(pct) {
   window.scrollTo({ top: target, behavior: isDragging ? 'auto' : 'smooth' });
 }
 
-// Mouse events for dragging
-if (knob) {
+function setupScrollClockInteractions() {
+  if (!knob || !track) return;
+  
+  // Mouse events for dragging
   knob.addEventListener('mousedown', (e) => {
     isDragging = true;
     const knobRect = knob.getBoundingClientRect();
@@ -216,29 +228,28 @@ if (knob) {
     document.body.style.userSelect = 'none';
     e.preventDefault();
   });
-}
 
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging || !track || !knob) return;
-  
-  const trackRect = track.getBoundingClientRect();
-  const y = e.clientY - trackRect.top - dragOffset;
-  const max = trackRect.height - knob.offsetHeight;
-  const pct = Math.max(0, Math.min(1, y / max));
-  
-  knob.style.transform = `translateY(${y}px)`;
-  scrollToPercent(pct);
-});
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging || !track || !knob) return;
+    
+    const trackRect = track.getBoundingClientRect();
+    const y = e.clientY - trackRect.top - dragOffset;
+    const max = trackRect.height - knob.offsetHeight;
+    const pct = Math.max(0, Math.min(1, y / max));
+    
+    knob.style.transform = `translateY(${y}px)`;
+    scrollToPercent(pct);
+    updateScrollClock(); // Update clock hands while dragging
+  });
 
-document.addEventListener('mouseup', () => {
-  if (isDragging) {
-    isDragging = false;
-    document.body.style.userSelect = '';
-  }
-});
+  document.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      document.body.style.userSelect = '';
+    }
+  });
 
-// Touch events for mobile dragging
-if (knob) {
+  // Touch events for mobile dragging
   knob.addEventListener('touchstart', (e) => {
     isDragging = true;
     const knobRect = knob.getBoundingClientRect();
@@ -246,36 +257,31 @@ if (knob) {
     dragOffset = touch.clientY - knobRect.top;
     e.preventDefault();
   }, { passive: false });
-}
 
-document.addEventListener('touchmove', (e) => {
-  if (!isDragging || !track || !knob) return;
-  
-  const touch = e.touches[0];
-  const trackRect = track.getBoundingClientRect();
-  const y = touch.clientY - trackRect.top - dragOffset;
-  const max = trackRect.height - knob.offsetHeight;
-  const pct = Math.max(0, Math.min(1, y / max));
-  
-  knob.style.transform = `translateY(${y}px)`;
-  scrollToPercent(pct);
-  e.preventDefault();
-}, { passive: false });
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging || !track || !knob) return;
+    
+    const touch = e.touches[0];
+    const trackRect = track.getBoundingClientRect();
+    const y = touch.clientY - trackRect.top - dragOffset;
+    const max = trackRect.height - knob.offsetHeight;
+    const pct = Math.max(0, Math.min(1, y / max));
+    
+    knob.style.transform = `translateY(${y}px)`;
+    scrollToPercent(pct);
+    updateScrollClock(); // Update clock hands while dragging
+    e.preventDefault();
+  }, { passive: false });
 
-document.addEventListener('touchend', () => {
-  if (isDragging) {
-    isDragging = false;
-  }
-});
+  document.addEventListener('touchend', () => {
+    if (isDragging) {
+      isDragging = false;
+    }
+  });
 
-updateScrollClock();
-window.addEventListener('scroll', updateScrollClock, { passive: true });
-window.addEventListener('resize', updateScrollClock);
-
-// Clicking the track moves scroll position
-if (track) {
+  // Clicking the track moves scroll position
   track.addEventListener('click', (e) => {
-    if (e.target === knob) return; // Don't trigger on knob clicks
+    if (e.target === knob || e.target.closest('.clock-knob')) return; // Don't trigger on knob clicks
     
     const rect = track.getBoundingClientRect();
     const y = e.clientY - rect.top - knob.offsetHeight / 2;
@@ -283,6 +289,17 @@ if (track) {
     const pct = Math.max(0, Math.min(1, y / max));
     scrollToPercent(pct);
   });
+}
+
+// Initialize scroll clock when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initScrollClock();
+    setupScrollClockInteractions();
+  });
+} else {
+  initScrollClock();
+  setupScrollClockInteractions();
 }
 
 
