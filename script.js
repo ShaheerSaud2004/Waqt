@@ -327,12 +327,21 @@ function initClockCursor() {
     cursorClock.classList.remove('visible');
   });
   
-  // Smooth cursor following animation
+  // Click animation
+  document.addEventListener('mousedown', () => {
+    cursorClock.classList.add('clicking');
+  });
+  
+  document.addEventListener('mouseup', () => {
+    cursorClock.classList.remove('clicking');
+  });
+  
+  // Smooth cursor following animation - faster and smoother
   function animateCursor() {
     const dx = mouseX - cursorX;
     const dy = mouseY - cursorY;
-    cursorX += dx * 0.1;
-    cursorY += dy * 0.1;
+    cursorX += dx * 0.2; // Increased from 0.1 for smoother following
+    cursorY += dy * 0.2;
     
     cursorClock.style.left = cursorX + 'px';
     cursorClock.style.top = cursorY + 'px';
@@ -348,7 +357,6 @@ function initClockCursor() {
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
     
-    const secDeg = seconds * 6;
     const minDeg = minutes * 6 + seconds * 0.1;
     const hourDeg = (hours % 12) * 30 + minutes * 0.5;
     
