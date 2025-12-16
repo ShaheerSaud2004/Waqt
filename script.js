@@ -302,4 +302,69 @@ if (document.readyState === 'loading') {
   setupScrollClockInteractions();
 }
 
+// Custom Clock Cursor
+function initClockCursor() {
+  const cursorClock = document.getElementById('cursor-clock');
+  const cursorHour = document.getElementById('cursor-hour');
+  const cursorMinute = document.getElementById('cursor-minute');
+  
+  if (!cursorClock || !cursorHour || !cursorMinute) return;
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  
+  // Track mouse movement
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorClock.classList.add('visible');
+  });
+  
+  // Hide cursor when mouse leaves window
+  document.addEventListener('mouseleave', () => {
+    cursorClock.classList.remove('visible');
+  });
+  
+  // Smooth cursor following animation
+  function animateCursor() {
+    const dx = mouseX - cursorX;
+    const dy = mouseY - cursorY;
+    cursorX += dx * 0.1;
+    cursorY += dy * 0.1;
+    
+    cursorClock.style.left = cursorX + 'px';
+    cursorClock.style.top = cursorY + 'px';
+    
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  
+  // Update clock hands with current time
+  function updateCursorClock() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const seconds = now.getSeconds();
+    
+    const secDeg = seconds * 6;
+    const minDeg = minutes * 6 + seconds * 0.1;
+    const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+    
+    cursorMinute.style.transform = `translate(-50%, -90%) rotate(${minDeg}deg)`;
+    cursorHour.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
+  }
+  
+  updateCursorClock();
+  setInterval(updateCursorClock, 1000);
+}
+
+// Initialize clock cursor
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initClockCursor);
+} else {
+  initClockCursor();
+}
+
 
