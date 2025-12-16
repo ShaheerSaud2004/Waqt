@@ -350,20 +350,29 @@ function initClockCursor() {
   }
   animateCursor();
   
-  // Update clock hands with current time
+  // Update clock hands with current time - updates every second
+  const cursorSecond = document.getElementById('cursor-second');
+  
   function updateCursorClock() {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
     
-    const minDeg = minutes * 6 + seconds * 0.1;
-    const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+    // Calculate degrees for each hand
+    const secDeg = seconds * 6; // 360/60 = 6 degrees per second
+    const minDeg = minutes * 6 + seconds * 0.1; // 6 degrees per minute + seconds adjustment
+    const hourDeg = (hours % 12) * 30 + minutes * 0.5; // 30 degrees per hour + minutes adjustment
     
+    // Update all hands with smooth transitions
+    if (cursorSecond) {
+      cursorSecond.style.transform = `translate(-50%, -90%) rotate(${secDeg}deg)`;
+    }
     cursorMinute.style.transform = `translate(-50%, -90%) rotate(${minDeg}deg)`;
     cursorHour.style.transform = `translate(-50%, -90%) rotate(${hourDeg}deg)`;
   }
   
+  // Update immediately and then every second
   updateCursorClock();
   setInterval(updateCursorClock, 1000);
 }
