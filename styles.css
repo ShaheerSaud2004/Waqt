@@ -1087,7 +1087,7 @@ img { max-width: 100%; height: auto; }
 .menu h2::after {
   content: "";
   position: absolute;
-  bottom: -15px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
@@ -1103,7 +1103,7 @@ img { max-width: 100%; height: auto; }
 .menu-subtitle {
   font-size: 1.2rem;
   color: var(--ink-2);
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   font-style: italic;
 }
 
@@ -1117,7 +1117,7 @@ img { max-width: 100%; height: auto; }
 .drink-card { 
   display: flex; 
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.5rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .drink-card:hover {
@@ -1128,13 +1128,13 @@ img { max-width: 100%; height: auto; }
   height: 420px;
   overflow: hidden;
   position: relative;
-  background: var(--cream);
+  background: transparent;
   border: 2px solid var(--line);
-  border-radius: 28px 28px 0 0;
+  border-radius: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 8px 32px rgba(0,0,0,.1);
 }
@@ -1151,21 +1151,22 @@ img { max-width: 100%; height: auto; }
   transition: opacity 0.5s ease;
   z-index: 1;
   pointer-events: none;
-  border-radius: 28px 28px 0 0;
+  border-radius: 28px;
 }
 .drink-card:hover .drink-image::before {
   opacity: 1;
 }
 .drink-image img {
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   filter: brightness(1) contrast(1.05);
   position: relative;
   z-index: 0;
-  border-radius: 20px;
+  border-radius: 28px;
+  display: block;
 }
 .drink-card:hover .drink-image img {
   transform: scale(1.05);
@@ -1175,19 +1176,16 @@ img { max-width: 100%; height: auto; }
   padding: 1.75rem 2rem;
   background: var(--cream);
   border: 2px solid var(--line);
-  border-top: none;
-  border-radius: 0 0 28px 28px;
+  border-radius: 28px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   text-align: center;
   box-shadow: 0 8px 32px rgba(0,0,0,.1);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-top: -2px;
 }
 .drink-card:hover .drink-content {
   border-color: var(--gold);
-  border-top: none;
   box-shadow: 0 16px 48px rgba(0,0,0,.15);
   background: linear-gradient(to bottom, var(--cream) 0%, var(--card) 100%);
 }
