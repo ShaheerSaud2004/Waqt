@@ -1139,50 +1139,40 @@ img { max-width: 100%; height: auto; }
   gap: 2rem; 
 }
 .dial-card { 
-  background: var(--cream); 
-  border: 1px solid var(--line); 
-  border-radius: 24px; 
+  background: transparent; 
+  border: none; 
+  border-radius: 0; 
   padding: 0; 
   text-align: center; 
-  box-shadow: 0 4px 20px rgba(0,0,0,.06); 
+  box-shadow: none; 
   display: flex; 
   flex-direction: column;
-  overflow: hidden;
+  gap: 1rem;
+  overflow: visible;
   position: relative; 
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background: linear-gradient(to bottom, var(--cream) 0%, var(--card) 100%);
 }
 .dial-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0,0,0,.12);
-  border-color: var(--gold);
-}
-.dial-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 1;
-}
-.dial-card:hover::before {
-  opacity: 1;
 }
 .dial-image {
   width: 100%;
   height: 320px;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-contrast) 100%);
+  background: var(--cream);
+  border: 2px solid var(--line);
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
   transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+.dial-card:hover .dial-image {
+  border-color: var(--gold);
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
 }
 .dial-image::before {
   content: "";
@@ -1222,10 +1212,19 @@ img { max-width: 100%; height: auto; }
 }
 .dial-content {
   padding: 1.5rem;
+  background: var(--cream);
+  border: 2px solid var(--line);
+  border-radius: 24px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   flex: 1;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  transition: all 0.4s ease;
+}
+.dial-card:hover .dial-content {
+  border-color: var(--gold);
+  box-shadow: 0 8px 30px rgba(0,0,0,.12);
 }
 .dial-title { 
   font-family: "Cormorant Garamond", serif;
