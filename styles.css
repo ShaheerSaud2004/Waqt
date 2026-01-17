@@ -1064,6 +1064,7 @@ img { max-width: 100%; height: auto; }
   background: var(--bg-contrast); 
   position: relative;
   border-top: 1px solid var(--line);
+  padding: clamp(4rem, 8vw, 6rem) 0;
 }
 .menu::before {
   content: "";
@@ -1075,137 +1076,162 @@ img { max-width: 100%; height: auto; }
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
 .menu h2 { 
-  margin-bottom: 1rem; 
+  margin-bottom: 0.5rem; 
   text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--ink);
   position: relative;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 .menu h2::after {
   content: "";
   position: absolute;
-  bottom: -10px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background: var(--gold);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--accent), var(--gold), transparent);
+  border-radius: 2px;
 }
 
 .menu-grid { 
   display: grid; 
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-  gap: 2rem; 
-  margin-top: 2rem;
+  gap: 3rem; 
+  margin-top: 3rem;
 }
 .menu-group { 
-  margin-bottom: 2rem; 
-  background: var(--card); 
-  border-radius: 20px; 
-  padding: 1.5rem; 
-  border: 1px solid var(--line);
-  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  margin-bottom: 0; 
+  background: transparent; 
+  border-radius: 0; 
+  padding: 0; 
+  border: none;
+  box-shadow: none;
 }
 .group-title { 
   font-family: "Cormorant Garamond", serif; 
   font-weight: 700; 
-  letter-spacing: .5px; 
-  margin-bottom: 1rem; 
-  font-size: 1.5rem;
+  letter-spacing: 0.5px; 
+  margin-bottom: 2rem; 
+  font-size: 2rem;
   color: var(--accent);
   text-align: center;
   position: relative;
+  padding-bottom: 1rem;
 }
 .group-title::after {
   content: "";
   position: absolute;
-  bottom: -5px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 1px;
-  background: var(--gold);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
 }
 
 .dial-grid { 
   display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  gap: 1.25rem; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 2rem; 
 }
 .dial-card { 
   background: var(--cream); 
-  border: 2px solid var(--gold); 
-  border-radius: 20px; 
-  padding: 1.5rem; 
+  border: 1px solid var(--line); 
+  border-radius: 24px; 
+  padding: 0; 
   text-align: center; 
-  box-shadow: 0 12px 28px rgba(0,0,0,.08), inset 0 0 0 1px rgba(212, 175, 55, 0.1); 
-  display: grid; 
-  gap: 1rem; 
-  align-content: start; 
+  box-shadow: 0 4px 20px rgba(0,0,0,.06); 
+  display: flex; 
+  flex-direction: column;
+  overflow: hidden;
   position: relative; 
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(to bottom, var(--cream) 0%, var(--card) 100%);
 }
 .dial-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0,0,0,.12), 0 0 0 1px rgba(212, 175, 55, 0.2);
-  border-color: var(--accent);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.12);
+  border-color: var(--gold);
 }
 .dial-card::before {
   content: "";
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, var(--gold), var(--accent), var(--gold));
-  border-radius: 20px;
-  z-index: -1;
-  opacity: 0.1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
 }
-.dial-face { 
-  width: 120px; 
-  height: 120px; 
-  border-radius: 50%; 
-  margin: 0 auto; 
-  background: radial-gradient(circle, #ffffff 0, var(--cream) 65%, color-mix(in oklab, var(--accent-2) 20%, #fff 80%) 100%); 
-  border: 3px solid var(--gold); 
-  position: relative; 
-  box-shadow: 
-    inset 0 0 0 2px var(--accent),
-    0 8px 20px rgba(0,0,0,.1);
-  transition: all 0.3s ease;
+.dial-card:hover::before {
+  opacity: 1;
 }
-.dial-card:hover .dial-face {
-  transform: scale(1.05);
-  box-shadow: 
-    inset 0 0 0 2px var(--accent),
-    0 12px 28px rgba(0,0,0,.15);
+.dial-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-contrast) 100%);
+  transition: all 0.4s ease;
 }
-.dial-face::before { 
-  content: ""; 
-  position: absolute; 
-  inset: 0; 
-  background: conic-gradient(from 0deg, color-mix(in oklab, var(--accent) 25%, transparent) 0 2deg, transparent 2deg 30deg); 
-  -webkit-mask: radial-gradient(circle, transparent 55%, #000 56%); 
-  mask: radial-gradient(circle, transparent 55%, #000 56%); 
-  opacity: .4; 
+.dial-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.02) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.dial-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(85, 107, 47, 0.05) 0%, rgba(139, 69, 19, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.dial-card:hover .dial-image::after {
+  opacity: 1;
+}
+.dial-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: brightness(1) contrast(1.02);
+}
+.dial-card:hover .dial-image img {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.05);
+}
+.dial-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
 }
 .dial-title { 
-  position: absolute; 
-  inset: 0; 
-  display: grid; 
-  place-items: center; 
+  font-family: "Cormorant Garamond", serif;
   font-weight: 700; 
-  padding: 0 0.5rem; 
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   color: var(--ink);
-  text-align: center;
+  margin: 0;
   line-height: 1.2;
+  letter-spacing: 0.3px;
 }
 .dial-desc { 
   color: var(--ink-2); 
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -1376,18 +1402,28 @@ img { max-width: 100%; height: auto; }
     padding: 1.25rem; 
     margin-bottom: 1.5rem;
   }
+  .dial-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
   .dial-card { 
-    padding: 1.25rem; 
+    border-radius: 20px;
   }
-  .dial-face { 
-    width: 100px; 
-    height: 100px; 
+  .dial-image {
+    height: 240px;
   }
-  .dial-title { 
-    font-size: 0.85rem; 
+  .dial-content {
+    padding: 1.25rem;
+  }
+  .dial-title {
+    font-size: 1.25rem;
   }
   .dial-desc { 
     font-size: 0.9rem; 
+  }
+  .group-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -1748,4 +1784,3 @@ a:hover, button:hover, input:hover, textarea:hover, select:hover, .nav-toggle:ho
     cursor: auto;
   }
 }
-
