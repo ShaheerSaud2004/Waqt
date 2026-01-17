@@ -1087,7 +1087,7 @@ img { max-width: 100%; height: auto; }
 .menu h2::after {
   content: "";
   position: absolute;
-  bottom: -25px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   width: 80px;
@@ -1103,7 +1103,7 @@ img { max-width: 100%; height: auto; }
 .menu-subtitle {
   font-size: 1.2rem;
   color: var(--ink-2);
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   font-style: italic;
 }
 
